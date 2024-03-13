@@ -270,7 +270,7 @@ Test01
     [Tags]    TC001
     Remove Files    ${MyFolderWorkspace}/${MyRepositoryName}/results/*.png
     # Delete the study in TMP Web
-    Run  C:/Users/albert/Desktop/DELETE/zDelStudyRepublish2.bat
+    # Run  C:/Users/albert/Desktop/DELETE/zDelStudyRepublish2.bat
     Sleep    3s
 
 
