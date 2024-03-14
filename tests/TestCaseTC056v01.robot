@@ -267,7 +267,7 @@ Delete All My Email Messages In SMTP Server
 
 Test01
     [Documentation]    Reset the test results
-    [Tags]    TC001
+    [Tags]    CRITICALITY LOW
     Remove Files    ${MyFolderWorkspace}/${MyRepositoryName}/results/*.png
     # Delete the study in TMP Web
     # Run  C:/Users/albert/Desktop/DELETE/zDelStudyRepublish2.bat
@@ -276,7 +276,7 @@ Test01
 
 Test02
     [Documentation]    Check and reset the folder of downloaded files
-    [Tags]    TC002
+    [Tags]    CRITICALITY LOW
     Create Directory    C:\\temp
     ${ListOfDir} =    List Directories In Directory    C:\\temp
     # The line mentioned below is only for tests
@@ -293,7 +293,7 @@ Test02
 
 Test03
     [Documentation]    Test and check SMTP server
-    [Tags]    TC003
+    [Tags]    CRITICALITY LOW
     Open Browser    http://localhost:8070/    Chrome    options=add_argument("--disable-infobars");add_argument("--lang\=en");binary_location=r"C:\\000\\chromeWin64ForTests\\chrome.exe"
     Maximize Browser Window
     Wait Until Page Contains    FakeSMTPServer    timeout=15s
@@ -302,7 +302,7 @@ Test03
 
 Test04
     [Documentation]    Reset the list of email messages in SMTP server
-    [Tags]    TC004
+    [Tags]    CRITICALITY LOW
     Delete All My Email Messages In SMTP Server
     Sleep    2s
     Go To    http://localhost:8070/
@@ -312,7 +312,7 @@ Test04
 
 Test05
     [Documentation]    Open and access the website of TMP Web in anonymous mode
-    [Tags]    TC005
+    [Tags]    CRITICALITY NORMAL
     # Check that the option "Ask where to save each file before downloading" is disabled in the settings of Chrome
     ${prefs} =    Create Dictionary    download.default_directory=${MyDirectoryDownload}
     Open Browser    https://${MyHostname}.telemiscloud.com/tmpweb/patient.html    chrome    options=add_experimental_option("prefs",${prefs});add_argument("--disable-infobars");add_argument("--lang\=en");binary_location=r"C:\\000\\chromeWin64ForTests\\chrome.exe"
@@ -323,7 +323,7 @@ Test05
 
 Test06
     [Documentation]    Select the language
-    [Tags]    TC006
+    [Tags]    CRITICALITY LOW
     ${c} =    Get Element Count    id=kc-locale-dropdown
     Run Keyword If    ${c}>0    Click Element    id=kc-locale-dropdown
     # Sleep    2s
@@ -337,7 +337,7 @@ Test06
 
 Test07
     [Documentation]    Enter the keys in anonymous mode of TMP Web
-    [Tags]    TC007
+    [Tags]    CRITICALITY NORMAL
     Wait Until Page Contains    Unique exam    timeout=15s
     Wait Until Element Is Visible    id=id    timeout=15s
     Wait Until Element Is Visible    id=birthdate    timeout=15s
@@ -355,7 +355,7 @@ Test07
 
 Test08
     [Documentation]    The web page shows the message "Documents are not available."
-    [Tags]    TC008
+    [Tags]    CRITICALITY HIGH
     Wait Until Page Contains    Documents are not available.    timeout=15s
     Wait Until Page Contains    Email Address:    timeout=15s
     Wait Until Element Is Visible    id=userEmail    timeout=15s
@@ -364,7 +364,7 @@ Test08
 
 Test09
     [Documentation]    The user enters the email address and then clicks the button "Republish documents"
-    [Tags]    TC009
+    [Tags]    CRITICALITY HIGH
     Element Should Be Visible    id=userEmail
     Element Should Be Visible    id=republishActionButton
     Input Text    id=userEmail    ${TmpWebUser3Email}    clear=True
@@ -379,7 +379,7 @@ Test09
 
 Test10
     [Documentation]    Once TMP Tool Web has published the study completely, check that the document is available on the web page
-    [Tags]    TC010
+    [Tags]    CRITICALITY HIGH
     Wait Until Page Contains    ${MyPatient2BirthdateDD}-${MyPatient2BirthdateMM}-${MyPatient2BirthdateYYYY}    timeout=300s
     Wait Until Page Contains    Download the following study    timeout=15s
     Wait Until Element Is Visible    link=DCM    timeout=15s
@@ -392,7 +392,7 @@ Test10
 
 Test11
     [Documentation]    Download JPG files from the website of TMP Web
-    [Tags]    TC011
+    [Tags]    CRITICALITY NORMAL
     # Check that the option "Ask where to save each file before downloading" is disabled in the settings of Chrome
     Wait Until Page Contains    Download the following study    timeout=15s
     Wait Until Element Is Visible    link=DCM    timeout=15s
@@ -405,7 +405,7 @@ Test11
 
 Test12
     [Documentation]    Check that downloading JPG files passed successfully
-    [Tags]    TC012
+    [Tags]    CRITICALITY NORMAL
     Wait Until Created    ${MyDirectoryDownload}\\*.zip    timeout=240s
     Sleep    2s
     ${ListOfZip} =    List Files In Directory    ${MyDirectoryDownload}
@@ -419,7 +419,7 @@ Test12
 
 Test13
     [Documentation]    Download DICOM files from the website of TMP Web
-    [Tags]    TC013
+    [Tags]    CRITICALITY NORMAL
     Reload Page
     Wait Until Page Contains    Download the following study    timeout=15s
     Wait Until Element Is Visible    link=DCM    timeout=50s
@@ -433,7 +433,7 @@ Test13
 
 Test14
     [Documentation]    Check that downloading DCM files passed successfully
-    [Tags]    TC014
+    [Tags]    CRITICALITY NORMAL
     Wait Until Created    ${MyDirectoryDownload}\\*.zip    timeout=240s
     Sleep    2s
     ${ListOfZip} =    List Files In Directory    ${MyDirectoryDownload}
@@ -443,7 +443,7 @@ Test14
 
 Test15
     [Documentation]    The user opens the series with the image viewer
-    [Tags]    TC015
+    [Tags]    CRITICALITY NORMAL
     Element Should Be Visible    link=${MyPatient2SeriesDescription}
     Click Link    link=${MyPatient2SeriesDescription}
     Wait Until Page Contains    Non-diagnostic quality    timeout=19s
@@ -461,7 +461,7 @@ Test15
 
 Test16
     [Documentation]    The user receives the email message informing that the document is available in TMP Web
-    [Tags]    TC016
+    [Tags]    CRITICALITY NORMAL
     Go To    http://localhost:8070/
     Wait Until Page Contains    FakeSMTPServer    timeout=15s
     Wait Until Page Contains    Inbox    timeout=15s
@@ -477,5 +477,5 @@ Test16
 
 Test17
     [Documentation]    Shut down the browser and reset the cache
-    [Tags]    TC017
+    [Tags]    CRITICALITY LOW
     Close All Browsers
