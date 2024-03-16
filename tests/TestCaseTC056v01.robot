@@ -91,6 +91,8 @@ Remove The Previous Results
     Create file  ${MyFolderWorkspace}/${MyRepositoryName}/results/${MyLogFile}    ${Time}${SPACE}Start the tests \n
     # Remove DICOM files from dicomPath of TMAA
     Remove Files    ${MyDicomPath}/*.dcm
+    Create Directory    ${MyDirectoryDownload}
+    Remove Files    ${MyDirectoryDownload}\\*.zip
 
 
 Check That Watchdog Is Running
